@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script type="text/javascript">
+    function set_openid(openid,pr)
+    {
+	u = openid.search('<username>')
+	if (u != -1) {
+	    // openid requires username
+	    user = prompt('Skriv inn ditt ' + pr + ' brukernavn:')
+	    openid = openid.substr(0, u) + user
+	}
+	form = document.forms['login'];
+	form.elements['openid'].value = openid
+    }
+    </script>
+
+
+    <h1>Innlogging </h1>
+    <form action="" method="post" name="login">
+	{{ form.hidden_tag() }}	
+	<p> 
+	    OpenID:
+	    {{ form.openid(size=20) }}</br>
+	    {% for error in form.openid.errors %}
+		<span style="color: red;">[{{ error }}] </span>
+	    {% endfor %}</br>
+
+	    |{% for pr in providers %}
+	        <a href="javascript:set_openid('{{ pr.url }}', '{{ pr.name }}');">{{pr.name}}</a> |
+	    {% endfor %}
+	</p>
+	<p>{{ form.remember_me }} Husk meg </p>
+	<p><input type="submit" value="Logg inn"></p>
+    </form>
+{% endblock %}
+	    

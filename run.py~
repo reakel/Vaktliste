@@ -1,0 +1,4 @@
+#!flask/bin/python
+from app import app
+uee
+app.run(debug=True)

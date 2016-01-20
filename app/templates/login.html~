@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Innlogging </h1>
+    <form action="" method="post" name="login">
+	{{ form.hidden_tag() }}	
+	<p> 
+	    OpenID:
+	    {{ form.openid(size=20) }}</br>
+	    {% for error in form.openid.errors %}
+		<span style="color: red;">[{{ error }}] </span>
+	    {% endfor %}</br>
+	</p>
+	<p>{{ form.remember_me }} Husk meg </p>
+	<p><input type="submit" value="Logg inn"></p>
+    </form>
+{% endblock %}
+	    

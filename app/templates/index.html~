@@ -1,0 +1,15 @@
+<html>
+    <head>
+	{% if title %}
+            <title>Vakter {{ title }}</title>
+        {% else %}
+	    <title>Vakter Reakeltjenesten</title>
+	{% endif %}
+    </head>
+    <body>
+	<h1>Velkommen, {{ user.name }}!</h1>
+	{% for reakel in reakler %}
+	    <div><p>{{ reakel.name }} har <b>{{ reakel.antallTimer }} timer </b>til rådighet </p></div>
+	{% endfor %}
+    </body>
+</html>
